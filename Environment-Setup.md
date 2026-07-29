@@ -49,7 +49,8 @@ docker --version
 
 **Result:** Docker version `28.5.2` was installed successfully.
 
-**Evidence:** [DOCKER.png](DOCKER.png)
+**Evidence:** <img width="612" height="62" alt="DOCKER" src="https://github.com/user-attachments/assets/0815ac18-5df9-418e-8c52-58df63be0f84" />
+
 
 ### 2. Install and Verify AWS CLI v2
 
@@ -62,7 +63,8 @@ aws --version
 
 **Result:** AWS CLI version `2.36.9` was installed successfully.
 
-**Evidence:** [AWS.png](AWS.png)
+**Evidence:** <img width="610" height="61" alt="AWS" src="https://github.com/user-attachments/assets/eab97bf1-b30c-4c85-accf-38df605b59a3" />
+
 
 ### 3. Install and Verify kind and kubectl
 
@@ -77,7 +79,8 @@ kubectl version --client
 **Result:** kind `0.23.0`, kubectl client `v1.33.4`, and Kustomize `v5.5.0`
 were available.
 
-**Evidence:** [KIND&KUBECTL.png](KIND&KUBECTL.png)
+**Evidence:** <img width="216" height="100" alt="KIND KUBECTL" src="https://github.com/user-attachments/assets/fb23860a-bb21-41f2-8b9f-5d644b1c067c" />
+
 
 ### 4. Install and Verify Helper Tools
 
@@ -92,7 +95,8 @@ copyparty --version
 **Result:** OpenSSL `3.5.5`, oathtool `2.6.12`, and copyparty `1.28.2` were
 available.
 
-**Evidence:** [HELPER TOOLS.png](HELPER%20TOOLS.png)
+**Evidence:** <img width="622" height="197" alt="HELPER TOOLS" src="https://github.com/user-attachments/assets/d61cb72e-6b71-4dde-9b0c-ece0b80b5760" />
+
 
 ### 5. Start and Verify LocalStack
 
@@ -106,7 +110,8 @@ curl http://localhost:4566/_localstack/health
 **Result:** LocalStack version `3.0.2` responded successfully, and the listed
 services were reported as `available`.
 
-**Evidence:** [START AND VERIFY LOCALSTACK.png](START%20AND%20VERIFY%20LOCALSTACK.png)
+**Evidence:** <img width="622" height="292" alt="START AND VERIFY LOCALSTACK" src="https://github.com/user-attachments/assets/db8fcd96-5b68-409c-834b-723a921f52a9" />
+
 
 ### 6. Create and Verify the Kubernetes Cluster
 
@@ -122,7 +127,8 @@ kubectl get nodes
 `ccse-control-plane` node was in `Ready` status with Kubernetes version
 `v1.30.0`.
 
-**Evidence:** [CREATE AND VERIFY THE KUBERNETES CLUSTER.png](CREATE%20AND%20VERIFY%20THE%20KUBERNETES%20CLUSTER.png)
+**Evidence:** <img width="845" height="190" alt="CREATE AND VERIFY THE KUBERNETES CLUSTER" src="https://github.com/user-attachments/assets/e3649b3e-c07c-4af2-a641-3a38d4a2e172" />
+
 
 ### 7. Configure AWS CLI to Use LocalStack
 
@@ -144,7 +150,8 @@ aws sts get-caller-identity --endpoint-url http://127.0.0.1:4566
 **Result:** The command returned the LocalStack test AWS identity, including
 account ID `000000000000`, confirming that AWS CLI was configured correctly.
 
-**Evidence:** [CONFIGURE AWS CLI TO USE LOCALSTACK.png](CONFIGURE%20AWS%20CLI%20TO%20USE%20LOCALSTACK.png)
+**Evidence:** <img width="567" height="262" alt="CONFIGURE AWS CLI TO USE LOCALSTACK" src="https://github.com/user-attachments/assets/e2b5c3bb-baee-4fc9-a411-a013203c5abf" />
+
 
 ## Conclusion
 
