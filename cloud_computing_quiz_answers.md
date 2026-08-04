@@ -1,45 +1,14 @@
-# Cloud Computing & AWS Quiz Answer Key
+# QUIZ-W2
 
-A comprehensive reference for cloud computing, AWS IAM, Kubernetes, LocalStack, and containerization quiz questions.
+## Course Information
 
----
+| Item | Details |
+| --- | --- |
+| Course | IKB42603 Cloud Computing Security Essentials |
+| Lab | Lab 0 - Environment Setup |
+| Student Name | MUHAMMAD ASRA QUZZAIFI BIN MOHD RABI |
+| Date | 4 August 2026 |
 
-## 📋 Summary of Questions and Answers
-
-| # | Question | Answer |
-|---|:---|:---|
-| 1 | LocalStack is used because it: | **Simulates AWS services locally** |
-| 2 | Which endpoint is commonly used with LocalStack? | `http://localhost:4566` |
-| 3 | Which security principle gives users only the permissions required to perform their tasks? | **Least Privilege** *(Note: Principle of Least Privilege)* |
-| 4 | Which is NOT an essential characteristic of cloud computing? | *(NIST 5 characteristics: On-demand self-service, Broad network access, Resource pooling, Rapid elasticity, Measured service)* |
-| 5 | Which AWS identity has unlimited privileges? | **Root User** |
-| 6 | Which service model provides virtual machines? | **IaaS** *(Infrastructure as a Service)* |
-| 7 | Which service model requires customers to manage the operating system? | **IaaS** |
-| 8 | Which command lists Kubernetes nodes? | `kubectl get nodes` |
-| 9 | In the ARN `arn:aws:s3:::my-bucket`, which component represents the AWS service? | `s3` *(or `aws` as partition)* |
-| 10 | Which tool creates a local Kubernetes cluster? | **kind** |
-| 11 | Google Docs is an example of: | **SaaS** *(Software as a Service)* |
-| 12 | Access keys are mainly used for: | **AWS CLI / Programmatic Access** |
-| 13 | Which deployment model combines private and public cloud? | **Hybrid Cloud** |
-| 14 | Which AWS-managed policy provides full administrative access? | `AdministratorAccess` |
-| 15 | What does ARN stand for? | **Amazon Resource Name** |
-| 16 | A Kubernetes cluster consists of: | **Multiple nodes** *(Control plane + worker nodes)* |
-| 17 | Which characteristic allows cloud resources to automatically grow or shrink? | **Rapid Elasticity** |
-| 18 | Which ARN component identifies the AWS account that owns the resource? | **Account ID** |
-| 19 | Which IAM identity is normally used as a temporary identity? | **IAM Role** |
-| 20 | Which deployment model provides the MOST control? | **Private Cloud** |
-| 21 | Which account should never have access keys created for routine use? | **Root User** |
-| 22 | A node is: | **A worker machine** |
-| 23 | For easier permission management, policies should preferably be attached to: | **IAM Groups** |
-| 24 | Docker is mainly used to: | **Build, package, and run containerized applications** |
-| 25 | A collection of IAM users is called: | **IAM Group** |
-| 26 | Which IAM component contains permissions? | **IAM Policy** |
-| 27 | Cloud computing refers to: | **Delivering computing resources over the Internet** |
-| 28 | Which AWS CLI command verifies the current identity? | `aws sts get-caller-identity` |
-| 29 | If an access key is compromised, what should be done first? | **Disable / Invalidate / Revoke the key immediately** |
-| 30 | The smallest deployable unit in Kubernetes is: | **Pod** |
-
----
 
 ## 📝 Detailed Answer Key (As Submitted)
 
