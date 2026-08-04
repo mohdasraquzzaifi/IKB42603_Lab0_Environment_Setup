@@ -5,7 +5,7 @@
 | Item | Details |
 | --- | --- |
 | Course | IKB42603 Cloud Computing Security Essentials |
-| Lab | Lab 0 - Environment Setup |
+| Lab | QUIZ - W2 |
 | Student Name | MUHAMMAD ASRA QUZZAIFI BIN MOHD RABI |
 | Date | 4 August 2026 |
 
