@@ -1,10 +1,12 @@
 # Lab 1 — Cloud Account Security, Identity & Access Management
 
-**Course:** IKB42603 Cloud Computing Security Essentials  
-**Lab period:** Weeks 1–2  
-**Platforms:** LocalStack IAM (AWS-compatible) and Kubernetes (kind)
+Course: IKB42603 Cloud Computing Security Essentials
+Lab: Lab 1
+Topic: Identity governance, least privilege, LocalStack IAM and Kubernetes RBAC
+Environment: LocalStack on localhost:4566 and kind Kubernetes cluster ccse-lab1
+Name: MUHAMMAD ASRA QUZZAIFI BIN MOHD RABI
 
-## Aim
+## Objective
 
 This lab applied identity governance, least privilege, credential hygiene, and Kubernetes Role-Based Access Control (RBAC). The work replaced routine root-level activity with a named administrator, created a read-only analyst identity, demonstrated access-key rotation, and enforced namespace-scoped permissions in Kubernetes.
 
@@ -64,15 +66,15 @@ The verification output shows `CloudAdmin_ASRA` as the member of `Admins`. This 
 
 1. Create the administrator group.
 
-   ![Evidence 2.1 — Creation of the Admins IAM group](<Evidence/2.1createGroup.png>)
+   <img width="462" height="185" alt="2 1createGroup" src="https://github.com/user-attachments/assets/f7a61211-2afc-4aca-9994-a0d9884dc7ab" />
 
 2. Create the personal administrator user.
 
-   ![Evidence 2.2 — Creation of the CloudAdmin_ASRA user](<Evidence/2.2createUserAdmin.png>)
+   <img width="527" height="191" alt="2 2createUserAdmin" src="https://github.com/user-attachments/assets/2ea79d59-3c82-48e0-9380-93a8af9a1615" />
 
 3. Verify that the administrator user belongs to the group.
 
-   ![Evidence 2.3 — CloudAdmin_ASRA membership in Admins](<Evidence/2.3.verifyMembership.png>)
+   <img width="572" height="336" alt="2 3 verifyMembership" src="https://github.com/user-attachments/assets/ff1e50ec-c9f5-496f-a0ec-4ac5ebb5998c" />
 
 ### Task 3 — Enforce least privilege with a scoped policy
 
@@ -92,11 +94,11 @@ The result lists only `AmazonS3ReadOnlyAccess`. Therefore, the analyst can read 
 
 1. Create the read-only analyst user.
 
-   ![Evidence 3.1 — Creation of the Analyst_AMIR user](<Evidence/3.1createUserRead.png>)
+   <img width="510" height="197" alt="3 1createUserRead" src="https://github.com/user-attachments/assets/987bdb1e-dff4-4509-99e3-62405096991d" />
 
 2. Verify the analyst's attached read-only policy.
 
-   ![Evidence 3.2 — AmazonS3ReadOnlyAccess for Analyst_AMIR](<Evidence/3.2verifyPolicyUserRead.png>)
+   <img width="605" height="175" alt="3 2verifyPolicyUserRead" src="https://github.com/user-attachments/assets/a210a6f4-67f8-4421-b83d-367c4604894b" />
 
 ### Task 4 — Credential hygiene and access keys
 
@@ -115,15 +117,15 @@ This demonstrates the key-lifecycle control required by the lab. In a production
 
 1. Create the analyst access key. **Redact the displayed secret access key before final submission.**
 
-   ![Evidence 4.1 — Access-key creation for Analyst_AMIR](<Evidence/4.1createAccessKey.png>)
+   <img width="582" height="192" alt="4 1createAccessKey" src="https://github.com/user-attachments/assets/b6bf7f87-55e7-4650-ba07-1810dbee1c75" />
 
 2. List the access-key metadata and status.
 
-   ![Evidence 4.2 — Listed access key for Analyst_AMIR](<Evidence/4.2listAccessKey.png>)
+   <img width="475" height="205" alt="4 2listAccessKey" src="https://github.com/user-attachments/assets/ba95f6e6-e7af-40a9-95df-6fe0692615da" />
 
 3. Deactivate the old access key.
 
-   ![Evidence 4.3 — Access-key deactivation command](<Evidence/4.3rotateDeactivateOldKey.png>)
+   <img width="510" height="57" alt="4 3rotateDeactivateOldKey" src="https://github.com/user-attachments/assets/66392a3a-5559-4d69-90ef-2517433da0bf" />
 
 ## Session B — Kubernetes RBAC
 
@@ -135,7 +137,7 @@ This demonstrates the key-lifecycle control required by the lab. In a production
 
 **Evidence**
 
-![Kubernetes cluster and node verification](<Evidence part b/setupKubernetesCluster.png>)
+<img width="847" height="195" alt="setupKubernetesCluster" src="https://github.com/user-attachments/assets/72a80410-7b70-45fc-ad91-4c7fbd4057aa" />
 
 ### Task 5 — Separate environments with namespaces
 
@@ -147,7 +149,7 @@ Namespaces provide a scope boundary within one Kubernetes cluster. They allow pe
 
 **Evidence**
 
-![Evidence 5.0 — dev and prod namespace verification](<Evidence part b/5.0listNamespace.png>)
+<img width="311" height="240" alt="5 0listNamespace" src="https://github.com/user-attachments/assets/e3b25435-7fff-487a-a40c-c3a215dc8041" />
 
 ### Task 6 — Define a role and bind it
 
@@ -159,7 +161,7 @@ The RoleBinding YAML confirms the binding references the `pod-reader` Role and t
 
 **Evidence**
 
-![Evidence 6.0 — Service account, Role, and RoleBinding creation](<Evidence part b/6.0roleBind.png>)
+<img width="517" height="237" alt="6 0roleBind" src="https://github.com/user-attachments/assets/b605bf91-6084-4855-9c6d-ad4ae391d070" />
 
 ### Task 7 — Test that access control works
 
@@ -179,7 +181,7 @@ Authentication identifies the request as the `dev-user` service account. Authori
 
 **Evidence**
 
-![Evidence 7.0 — Kubernetes RBAC authorization test results](<Evidence part b/7.0test.png>)
+<img width="430" height="232" alt="7 0test" src="https://github.com/user-attachments/assets/3d46135f-d901-420d-af7e-6b47e642180c" />
 
 ## Required RoleBinding verification output
 
@@ -199,7 +201,7 @@ The supplied output verifies:
 
 **Evidence**
 
-![RoleBinding YAML verification](<Evidence part b/Verification.png>)
+<img width="495" height="306" alt="Verification" src="https://github.com/user-attachments/assets/e0b87b7c-6eb2-46e2-82a0-dafbc5c4efae" />
 
 ## Short-answer questions
 
