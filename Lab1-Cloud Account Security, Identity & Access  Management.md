@@ -121,15 +121,15 @@ This demonstrates the key-lifecycle control required by the lab. In a production
 
 1. Create the analyst access key. **Redact the displayed secret access key before final submission.**
 
-   <img width="582" height="192" alt="4 1createAccessKey" src="https://github.com/user-attachments/assets/b6bf7f87-55e7-4650-ba07-1810dbee1c75" />
+   <img width="582" height="192" alt="4 1createAccessKey" src="https://github.com/user-attachments/assets/28deac73-5daa-4705-9ba8-fee62d646e66" />
 
 2. List the access-key metadata and status.
 
-   <img width="475" height="205" alt="4 2listAccessKey" src="https://github.com/user-attachments/assets/ba95f6e6-e7af-40a9-95df-6fe0692615da" />
+   <img width="475" height="205" alt="4 2listAccessKey" src="https://github.com/user-attachments/assets/a84d17be-cd85-485b-b0e3-6f23ec9207b9" />
 
 3. Deactivate the old access key.
 
-   <img width="510" height="57" alt="4 3rotateDeactivateOldKey" src="https://github.com/user-attachments/assets/66392a3a-5559-4d69-90ef-2517433da0bf" />
+   <img width="510" height="57" alt="4 3rotateDeactivateOldKey" src="https://github.com/user-attachments/assets/b0d9f4fd-4978-4d11-8e9e-ba2b1534e98e" />
 
 ## Session B — Kubernetes RBAC
 
