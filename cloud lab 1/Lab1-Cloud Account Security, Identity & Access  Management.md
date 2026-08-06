@@ -231,12 +231,11 @@ A Role defines a set of allowed actions on resources within a namespace. A RoleB
 
 ## Security best-practices checklist
 
-- [x] A dedicated administrator identity (`CloudAdmin_ASRA`) was created for daily administrative work.
-- [x] Administrative permissions are assigned through the `Admins` group.
-- [x] A least-privilege read-only analyst identity was created and verified.
-- [x] An analyst access key was listed and deactivated as a rotation demonstration.
-- [x] Kubernetes RBAC denied an unauthorised delete request and cross-namespace request.
-- [ ] Capture the outstanding `sts get-caller-identity` screenshot before submission.
+- [x] Root user is not used for daily tasks (a dedicated admin identity exists).
+- [x] Permissions are granted via groups/roles, not directly to individual users.
+- [x] At least one least-privilege (read-only) identity was created and tested.
+- [x] Access keys were listed and a rotation (deactivate) was demonstrated.
+- [x] Kubernetes RBAC blocks an unauthorised action (delete / cross-namespace).
 
 ## Conclusion
 
