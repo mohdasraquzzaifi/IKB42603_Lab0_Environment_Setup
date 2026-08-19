@@ -1,5 +1,13 @@
 # IKB42603 Lab 2: Secure Isolation and Multi-Tenancy
 
+Course: IKB42603 Cloud Computing Security Essentials
+
+Lab: Lab 2 Secure Isolation and Multi-Tenancy
+
+Student ID: 52215225226
+
+Name: MUHAMMAD ASRA QUZZAIFI BIN MOHD RABI
+
 ## Purpose
 
 This report documents the environment setup and verification activities for **IKB42603 Lab 2 – Secure Isolation and Multi-Tenancy**. The lab demonstrates isolation across three dimensions:
@@ -33,9 +41,11 @@ kubectl -n kube-system rollout status daemonset/calico-node --timeout=180s
 
 **Result:** The cluster was created successfully and the Kubernetes context was set to `kind-ccse-lab2`. The Calico manifest was applied; its resources, including the Calico daemonset and controllers, were created.
 
-![Figure 1. kind cluster ccse-lab2 created.](<cluster with policy enforcement.png>)
+<img width="717" height="326" alt="cluster with policy enforcement" src="https://github.com/user-attachments/assets/a16726c5-cf4d-4f0d-9cb2-94508be0828c" />
 
-![Figure 2. Calico policy-enforcement components applied.](<cluster with policy enforcement 2.png>)
+
+<img width="872" height="541" alt="cluster with policy enforcement 2" src="https://github.com/user-attachments/assets/8792ed0e-cf74-41a0-911c-168dc8913828" />
+
 
 ## Step 2 – Create two isolated tenant namespaces
 
@@ -48,7 +58,8 @@ kubectl create namespace tenant-b
 
 **Result:** Both `tenant-a` and `tenant-b` were created.
 
-![Figure 3. Creation of tenant-a and tenant-b namespaces.](<create 2 tenants.png>)
+<img width="615" height="70" alt="create 2 tenants" src="https://github.com/user-attachments/assets/f4010529-3e38-4a26-9b04-0c62cacacbdd" />
+
 
 ## Step 3 – Deploy a web service for each tenant
 
@@ -64,7 +75,8 @@ kubectl get pods,svc -n tenant-a
 
 **Result:** The evidence shows the deployment and service were created in both namespaces. The `tenant-a` service is a ClusterIP service on port 80.
 
-![Figure 4. Web deployments and services created for both tenants.](<deploy web server.png>)
+<img width="562" height="202" alt="deploy web server" src="https://github.com/user-attachments/assets/0ac7c68e-2775-4763-a23c-6820de4edc35" />
+
 
 ## Step 4 – Demonstrate the default-open network risk
 
@@ -80,7 +92,8 @@ kubectl -n tenant-a run probe --rm -it --image=curlimages/curl --restart=Never \
 
 **Result:** The probe returned `HTTP 200`. This proves that a workload in `tenant-a` could reach the service in `tenant-b` by default. Namespace separation alone therefore does not provide network isolation in a multi-tenant cluster.
 
-![Figure 5. Cross-tenant probe succeeds before the policy (HTTP 200).](<curl tenant.png>)
+<img width="701" height="157" alt="curl tenant" src="https://github.com/user-attachments/assets/5a0f55ff-f892-492d-9b54-faa691d9f63f" />
+
 
 ## Step 5 – Apply a resource quota to tenant-a
 
@@ -105,7 +118,8 @@ kubectl describe resourcequota tenant-a-quota -n tenant-a
 
 **Result:** `tenant-a-quota` was created. The description confirms the configured hard limits: five pods, one CPU request, and 512 MiB memory request. This control helps contain a noisy-neighbour tenant on shared compute infrastructure.
 
-![Figure 6. Resource quota created and verified for tenant-a.](<resources quotas.png>)
+<img width="477" height="371" alt="resources quotas" src="https://github.com/user-attachments/assets/d9075a1e-3708-49d3-a491-3f4e7dc905a3" />
+
 
 ## Step 6 – Apply default-deny ingress to tenant-b
 
@@ -126,7 +140,8 @@ EOF
 
 **Result:** The `default-deny-ingress` policy was created in `tenant-b`.
 
-![Figure 7. Default-deny ingress NetworkPolicy applied to tenant-b.](<session b task 4.png>)
+<img width="502" height="207" alt="session b task 4" src="https://github.com/user-attachments/assets/71a15def-5630-4eff-a7bf-458dd80a56fa" />
+
 
 ## Step 7 – Verify that cross-tenant traffic is blocked
 
@@ -139,7 +154,8 @@ kubectl -n tenant-a exec -it deploy/web -- \
 
 **Result:** The command ended with `HTTP 000` and curl exit code `28`, which indicates a timeout. Compared with the earlier `HTTP 200`, this is direct before/after evidence that the default-deny policy blocked traffic from `tenant-a` to `tenant-b`.
 
-![Figure 8. Cross-tenant request times out after the policy (HTTP 000; exit code 28).](<session b task 4 (2).png>)
+<img width="936" height="87" alt="session b task 4 (2)" src="https://github.com/user-attachments/assets/fe4bf547-a132-460e-a2c3-b0be5c24e761" />
+
 
 ## Step 8 – Enforce per-tenant secret access with RBAC
 
@@ -160,7 +176,8 @@ kubectl auth can-i get secrets -n tenant-b --as=$SA
 
 **Result:** The authorization checks returned `yes` in `tenant-a` and `no` in `tenant-b`. This confirms that `app-a` can read secrets only in its own tenant namespace.
 
-![Figure 9. RBAC permits tenant-a secrets and rejects tenant-b secrets.](<session b task 5.png>)
+<img width="556" height="440" alt="session b task 5" src="https://github.com/user-attachments/assets/2e1654f1-17a2-4f62-b1b5-0631299ec9f1" />
+
 
 ## Step 9 – Demonstrate data remanence handling
 
@@ -182,7 +199,8 @@ docker run --rm -v ccse-vol:/data alpine sh -c \
 
 Normal deletion removes a directory entry but may not immediately erase underlying storage blocks. In cloud environments, users normally cannot control those physical blocks. Therefore, **cryptographic erasure**—destroying the encryption key—is the preferred practical method for making encrypted cloud data unrecoverable.
 
-![Figure 10. Remanence scan completed and the sample file was overwritten before deletion.](<session b task 6.png>)
+<img width="660" height="332" alt="session b task 6" src="https://github.com/user-attachments/assets/02c5de26-afac-4dc9-ba4c-23b6245357c2" />
+
 
 ## Verification summary
 
@@ -224,9 +242,3 @@ Data remanence is residual data that can remain on storage media after normal de
 | Per-tenant secrets with RBAC | Storage and access isolation |
 | Normal deletion and overwrite | Storage / data remanence |
 
-## Cleanup (only after assessment evidence has been retained)
-
-```sh
-kind delete cluster --name ccse-lab2
-docker volume rm ccse-vol
-```
