@@ -1,77 +1,19 @@
 # IKB42603 Lab 5 — Environment Setup and Execution Report
 
-**Lab:** Monitoring, Logging, and Incident Detection  
-**Environment:** Kali Linux terminal, Docker, LocalStack, AWS CLI v2  
-**Central log service:** LocalStack CloudWatch Logs at `http://localhost:4566`  
-**Evidence reviewed:** seven supplied screenshots and `IKB42603_Lab5_Monitoring_Logging_and_Incident_Detection.pdf`
+Course: IKB42603 Cloud Computing Security Essentials
+
+Lab: IKB42603 Lab5 Monitoring Logging and Incident Detection
+
+Student ID: 52215225226
+
+Name: MUHAMMAD ASRA QUZZAIFI BIN MOHD RABI
 
 ## 1. Purpose
 
 This lab creates and centralises authentication logs, makes the records tamper-evident, detects a correlated attack pattern, and preserves incident evidence. The simulated incident is a brute-force attempt against `admin`, followed by a successful login and a 500 MB data export from `203.0.113.9`.
 
-## 2. Prerequisites and environment
 
-Install and make available:
-
-- Docker, with the LocalStack container running and port `4566` published.
-- AWS CLI v2.
-- Standard shell utilities: `grep`, `awk`, `sort`, `uniq`, `sha256sum`, and `sed`.
-
-### 2.1 Open the working directory
-
-Use a Bash-compatible terminal (Kali Linux, WSL, or Git Bash) and change to the folder where the lab files will be created:
-
-```bash
-cd "/path/to/cloud lab 5"
-pwd
-```
-
-The remaining commands create `auth.log`, `auth.chain`, `auth.tampered`, `evidence_YYYYMMDD.log`, and `evidence.sha256` in this directory.
-
-### 2.2 Confirm required tools
-
-Check that Docker, AWS CLI, and the hashing utility are available:
-
-```bash
-docker --version
-aws --version
-sha256sum --version
-```
-
-If AWS CLI has not been configured previously, configure placeholder credentials for LocalStack. LocalStack accepts these values and does not require a real AWS account or AWS keys:
-
-```bash
-aws configure
-# AWS Access Key ID: test
-# AWS Secret Access Key: test
-# Default region name: us-east-1
-# Default output format: json
-```
-
-### 2.3 Start and verify LocalStack
-
-Start LocalStack if it is not already running:
-
-```bash
-docker run -d --name localstack -p 4566:4566 localstack/localstack
-```
-
-If a container called `localstack` already exists, start it instead:
-
-```bash
-docker start localstack
-```
-
-Confirm the container is running and that the LocalStack endpoint responds:
-
-```bash
-docker ps --filter name=localstack
-curl http://localhost:4566/_localstack/health
-```
-
-The health response should show LocalStack services as available or running.
-
-### 2.4 Configure the AWS CLI endpoint and central log destination
+### 2 Configure the AWS CLI endpoint and central log destination
 
 Set the LocalStack endpoint and create the CloudWatch log group and stream:
 
@@ -81,19 +23,8 @@ aws $EP --region us-east-1 logs create-log-group --log-group-name /ccse/app
 aws $EP --region us-east-1 logs create-log-stream --log-group-name /ccse/app --log-stream-name auth
 ```
 
-If the group or stream was already created during an earlier run, AWS CLI may report that it already exists. That is expected; retain the existing `/ccse/app` group and `auth` stream, then continue.
-
-### 2.5 Validate the setup
-
-Run the following command before generating logs:
-
-```bash
-aws $EP logs describe-log-groups --log-group-name-prefix /ccse/app
-```
-
-Expected result: the output lists the `/ccse/app` log group. The environment is then ready for Task 1.
-
-**Evidence:** [setup localstack.png](<setup localstack.png>) shows the endpoint variable and successful creation commands for `/ccse/app` and its `auth` stream.
+**Evidence:** <img width="817" height="86" alt="setup localstack" src="https://github.com/user-attachments/assets/b39d4880-2d35-4586-bc82-ea304754939e" />
+ shows the endpoint variable and successful creation commands for `/ccse/app` and its `auth` stream.
 
 ## 3. Task 1 — Generate application logs
 
@@ -113,7 +44,8 @@ cat auth.log
 ```
 
 **Observed result:** seven log entries were created: four failed administrator logins from `203.0.113.9`, then a successful administrator login and a 500 MB export from that same address.  
-**Evidence:** [task 1- generate application logs.png](<task 1- generate application logs.png>).
+**Evidence:** <img width="580" height="332" alt="task 1- generate application logs" src="https://github.com/user-attachments/assets/cdb948a2-2930-43dc-9a8a-b9a6e8235252" />
+
 
 ## 4. Task 2 — Centralise logs in CloudWatch
 
@@ -132,7 +64,8 @@ aws $EP logs get-log-events --log-group-name /ccse/app --log-stream-name auth \
 ```
 
 **Observed result:** the CloudWatch read-back contains all seven original messages, demonstrating that the logs were centralised rather than left only on the application host.  
-**Evidence:** [task 2- centralisa logs.png](<task 2- centralisa logs.png>).
+**Evidence:** <img width="921" height="232" alt="task 2- centralisa logs" src="https://github.com/user-attachments/assets/ad41c858-e771-4b5a-a999-b5142e9c9e01" />
+
 
 ## 5. Task 3 — Query security-relevant activity
 
@@ -143,7 +76,8 @@ grep LOGIN_FAIL auth.log | awk '{print $4, $5}' | sort | uniq -c
 ```
 
 **Observed result:** `4 ip=203.0.113.9`. This identifies four failed login attempts associated with the suspicious IP address. A log is the durable `LOGIN_FAIL` record; an event would be a near-real-time alert triggered by the repeated failures.  
-**Evidence:** [task 3- query for security.png](<task 3- query for security.png>).
+**Evidence:** <img width="622" height="61" alt="task 3- query for security" src="https://github.com/user-attachments/assets/4fbc0aef-d547-44b6-9f32-cde833a362be" />
+
 
 ## 6. Task 4 — Create tamper-evident, hash-chained logs
 
@@ -173,7 +107,8 @@ tail -n 1 auth.chain
 ```
 
 **Observed result:** `auth.chain` contains one SHA-256 hash per record. The altered copy changes the export size from `500MB` to `5MB`; recomputation must yield a different final hash, proving the alteration. The supplied capture shows the chain creation and changed record, but not the final-hash comparison itself.  
-**Evidence:** [task 4- create tamper-proof,hash-chianed logs.png](<task 4- create tamper-proof,hash-chianed logs.png>).
+**Evidence:** <img width="1050" height="592" alt="task 4- create tamper-proof,hash-chianed logs" src="https://github.com/user-attachments/assets/0742374d-82c1-4e70-b363-ad178ea35c60" />
+
 
 ## 7. Task 5 — Detect the incident by correlation
 
@@ -192,7 +127,7 @@ fi
 ```
 
 **Observed result:** `IP=203.0.113.9 fails=4 success=1 export=1`, followed by `ALERT: probable brute-force -> compromise -> data exfiltration`. The alert is possible only by correlating multiple records; no individual line proves the entire attack path.  
-**Evidence:** [task 5- detect the incident.png](<task 5- detect the incident.png>).
+**Evidence:** <img width="640" height="212" alt="task 5- detect the incident" src="https://github.com/user-attachments/assets/1c52752f-c156-4fc5-a3fc-c71583c5fa49" />
 
 ## 8. Task 6 — Contain and preserve evidence
 
@@ -208,7 +143,8 @@ cat evidence.sha256
 ```
 
 **Observed result:** the containment output lists a `DROP` rule for source `203.0.113.9`. An evidence file named `evidence_20260902.log` was created and its SHA-256 value recorded in `evidence.sha256` as `0adc5d2ac06cbbdd366099bcc0540c4c0f76946e71b52e4c99322731696a203b`.  
-**Evidence:** [task 6 - incident response and evidence preservation.png](<task 6 - incident response and evidence preservation.png>).
+**Evidence:** <img width="920" height="190" alt="task 6 - incident response and evidence preservation" src="https://github.com/user-attachments/assets/3ec51668-aca4-4a83-9829-0049086061b8" />
+
 
 Verify the evidence has not changed:
 
