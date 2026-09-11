@@ -1,5 +1,11 @@
 # IKB42603 Lab 6 — Object Storage and Data Lifecycle
+Course: IKB42603 Cloud Computing Security Essentials
 
+Lab: IKB42603_Lab6_Object_Storage_and_Data_Lifecycle
+
+Student ID: 52215225226
+
+Name: MUHAMMAD ASRA QUZZAIFI BIN MOHD RABI
 ## Purpose
 
 This report records the environment setup and task sequence for the lab **Object Storage and Data Lifecycle**. It is based on the supplied guide and the accompanying terminal-capture evidence. The lab uses LocalStack to emulate AWS services locally and the AWS CLI to administer an S3 bucket, IAM identity, and KMS key.
